@@ -3,6 +3,7 @@ import createTheme from "@mui/material/styles/createTheme";
 
 const siteTheme = createTheme({
   palette: {
+    mode: "dark",
     primary: red,
   },
   typography: {
