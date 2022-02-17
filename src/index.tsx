@@ -5,9 +5,7 @@ import { WordsProvider } from "./context/words/WordsProvider";
 
 ReactDOM.render(
   <React.StrictMode>
-    <WordsProvider>
-      <App />
-    </WordsProvider>
+    <App />
   </React.StrictMode>,
   document.getElementById("root"),
 );
