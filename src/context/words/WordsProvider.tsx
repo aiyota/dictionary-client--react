@@ -11,7 +11,7 @@ type props = {
 
 export const WordsProvider = (props: props) => {
   const config = makeConfig();
-  const repository = new WordsRepository(config.apiUrl);
+  const wordsRepository = new WordsRepository(config.apiUrl);
 
   const wordsDefaultState: any = {
     words: [],
@@ -23,7 +23,7 @@ export const WordsProvider = (props: props) => {
   );
 
   const loadWords = async () => {
-    const words = await repository.getWords();
+    const words = await wordsRepository.getWords();
 
     console.log(words);
     dispatch({ type: types.GET_WORDS, payload: words });

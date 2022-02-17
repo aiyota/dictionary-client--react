@@ -8,7 +8,12 @@ export default class WordsRepository implements IWordsRepository {
   constructor(private apiUrl: string) {}
 
   async getWords(): Promise<Word[]> {
-    return await axios.get(`${this.apiUrl}/words`);
+    try {
+      const response = await axios.get(`${this.apiUrl}/words`);
+      return response.data;
+    } catch (error) {
+      return [];
+    }
   }
 
   getWordById(id: string): Promise<Word> {
