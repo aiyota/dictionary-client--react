@@ -5,8 +5,6 @@ import Words from "./Words/Words";
 import { WordsProvider } from "../context/words/WordsProvider";
 import SiteThemeProvider from "../context/theme/SiteThemeProvider";
 
-console.log(process.env.REACT_APP_API_URL);
-
 const App = () => {
   return (
     <SiteThemeProvider>

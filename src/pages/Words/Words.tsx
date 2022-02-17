@@ -17,7 +17,7 @@ const Words = () => {
     <div>
       <Typography variant="h1">Glosseon</Typography>
       {words.map((w, i) => (
-        <WordCard record={w} unique={`card-${i + 1}`} />
+        <WordCard record={w} key={w.id} />
       ))}
     </div>
   );

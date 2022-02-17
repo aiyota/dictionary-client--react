@@ -6,15 +6,9 @@ import Typography from "@mui/material/Typography";
 import Word from "../../data/models/Word";
 import wordsStyle from "./wordsStyle";
 
-const WordCard = ({
-  record,
-  unique,
-}: {
-  record: Word;
-  unique: string;
-}) => {
+const WordCard = ({ record }: { record: Word }) => {
   return (
-    <div key={unique}>
+    <div>
       <Card sx={wordsStyle.card}>
         <CardContent>
           <Typography variant="h5" component="div">
