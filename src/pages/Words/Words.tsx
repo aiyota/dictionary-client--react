@@ -12,7 +12,6 @@ const Words = () => {
 
   return (
     <div>
-      {" "}
       <Typography variant="h1">Glosseon</Typography>
       {words.map(w => (
         <Typography>{w.word}</Typography>
