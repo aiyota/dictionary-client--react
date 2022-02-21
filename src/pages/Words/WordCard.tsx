@@ -12,7 +12,7 @@ const WordCard = ({ record }: { record: Word }) => {
     <div>
       <Card sx={wordsStyle.card}>
         <CardContent>
-          <Typography variant="h5" component="div">
+          <Typography variant="h4" component="div">
             {record.word}
           </Typography>
           <Typography sx={{ mb: 1.5 }} color="text.secondary">
