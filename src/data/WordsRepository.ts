@@ -16,9 +16,16 @@ export default class WordsRepository implements IWordsRepository {
     }
   }
 
-  getWordById(id: string): Promise<Word> {
-    throw new Error("Method not implemented.");
+  async getWordById(wordId: string): Promise<Word | null> {
+    try {
+      const response = await axios.get(`${this.apiUrl}/words/${wordId}`);
+      return response.data;
+    } catch (error) {
+      console.error(error);
+      return null;
+    }
   }
+
   createWord(word: CreateWordDto): Promise<Word> {
     throw new Error("Method not implemented.");
   }

@@ -10,9 +10,7 @@ const App = () => {
     <SiteThemeProvider>
       <Container maxWidth="md">
         <CssBaseline />
-        <WordsProvider>
-          <Words />
-        </WordsProvider>
+        <Words />
       </Container>
     </SiteThemeProvider>
   );

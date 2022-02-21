@@ -15,6 +15,7 @@ export const WordsProvider = (props: props) => {
 
   const wordsDefaultState: any = {
     words: [],
+    word: null,
   };
 
   const [state, dispatch] = React.useReducer(
@@ -29,11 +30,19 @@ export const WordsProvider = (props: props) => {
     dispatch({ type: types.GET_WORDS, payload: words });
   };
 
+  const loadWordById = async (wordId: string) => {
+    const word = await wordsRepository.getWordById(wordId);
+    console.log(word);
+    dispatch({ type: types.GET_WORD_BY_ID, payload: word });
+  };
+
   return (
     <WordsContext.Provider
       value={{
         words: state.words,
-        loadWords: loadWords,
+        word: state.word,
+        loadWords,
+        loadWordById,
       }}
     >
       {props.children}
