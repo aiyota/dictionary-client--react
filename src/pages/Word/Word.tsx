@@ -14,6 +14,8 @@ const Word = () => {
     if (wordId) {
       wordsContext.loadWordById(wordId);
     }
+
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (

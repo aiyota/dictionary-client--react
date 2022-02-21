@@ -5,6 +5,7 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Word from "./pages/Word/Word";
 import { WordsProvider } from "./context/words/WordsProvider";
 import SiteThemeProvider from "./context/theme/SiteThemeProvider";
+import AddWord from "./pages/AddWord/AddWord";
 
 ReactDOM.render(
   <React.StrictMode>
@@ -16,6 +17,7 @@ ReactDOM.render(
             <Route path="/word" element={<Word />}>
               <Route path=":wordId"></Route>
             </Route>
+            <Route path="/add-word" element={<AddWord />} />
           </Routes>
         </BrowserRouter>
       </SiteThemeProvider>
