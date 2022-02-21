@@ -1,6 +1,9 @@
+import { Container, CssBaseline } from "@mui/material";
 import * as React from "react";
 import { useParams } from "react-router-dom";
 import { WordsContext } from "../../context/words/WordsContext";
+import WordEntry from "./WordEntry";
+import wordStyle from "./wordStyle";
 
 const Word = () => {
   const wordsContext = React.useContext(WordsContext);
@@ -10,11 +13,15 @@ const Word = () => {
   React.useEffect(() => {
     if (wordId) {
       wordsContext.loadWordById(wordId);
-      console.log(wordsContext.loadWords);
     }
   }, []);
 
-  return <div>{word?.word}</div>;
+  return (
+    <Container sx={wordStyle.wordContainer}>
+      {!word ? <div>Word not found</div> : <WordEntry wordRecord={word} />}
+      <CssBaseline />
+    </Container>
+  );
 };
 
 export default Word;

@@ -5,6 +5,7 @@ import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
 import Word from "../../data/models/Word";
 import wordsStyle from "./wordsStyle";
+import { Link } from "react-router-dom";
 
 const WordCard = ({ record }: { record: Word }) => {
   return (
@@ -22,7 +23,9 @@ const WordCard = ({ record }: { record: Word }) => {
           </Typography>
         </CardContent>
         <CardActions>
-          <Button size="small">Learn More</Button>
+          <Button component={Link} to={`/word/${record.id}`} size="small">
+            View Entry
+          </Button>
         </CardActions>
       </Card>
     </div>
