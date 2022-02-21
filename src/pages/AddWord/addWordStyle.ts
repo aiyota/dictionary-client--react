@@ -1,4 +1,6 @@
-const addWordStyle = {
+import { CSSClasses } from "../../style/style-types";
+
+const addWordStyle: CSSClasses = {
   container: {
     marginTop: "2rem",
     maxWidth: "700px !important",

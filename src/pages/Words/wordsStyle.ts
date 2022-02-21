@@ -1,11 +1,12 @@
-const wordsStyle = {
+import { CSSClasses } from "../../style/style-types";
+
+const wordsStyle: CSSClasses = {
   container: {
     margin: "auto",
     maxWidth: "500px !important",
   },
   card: {
     marginBottom: "2rem",
-    bgcolor: "background.paper",
     maxWidth: "100%",
   },
   header: {
