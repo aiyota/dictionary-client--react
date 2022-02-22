@@ -2,8 +2,11 @@ import { CSSClasses } from "../../style/style-types";
 
 const wordsStyle: CSSClasses = {
   container: {
-    margin: "auto",
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "center",
     maxWidth: "500px !important",
+    height: "100vh",
   },
   card: {
     marginBottom: "2rem",

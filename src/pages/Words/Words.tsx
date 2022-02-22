@@ -1,5 +1,10 @@
 import * as React from "react";
-import { Button, Container, Typography } from "@mui/material";
+import {
+  Button,
+  CircularProgress,
+  Container,
+  Typography,
+} from "@mui/material";
 import { WordsContext } from "../../context/words/WordsContext";
 import WordCard from "./WordCard";
 import wordsStyle from "./wordsStyle";
@@ -7,22 +12,23 @@ import { Link } from "react-router-dom";
 
 const Words = () => {
   const wordsContext = React.useContext(WordsContext);
-  const { words } = wordsContext;
+  const { words, loadingPage } = wordsContext;
 
   React.useEffect(() => {
     wordsContext.loadWords();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  return (
-    <Container maxWidth="sm">
-      {words.length === 0 ? (
+  const makePageContent = () => {
+    if (loadingPage)
+      return (
         <div>
-          <Typography sx={wordsStyle.header} variant="h4">
-            No words found...
-          </Typography>
+          <CircularProgress />
         </div>
-      ) : (
+      );
+
+    if (!loadingPage && words.length > 0)
+      return (
         <div>
           <Typography sx={wordsStyle.header} variant="h1">
             Words
@@ -34,7 +40,20 @@ const Words = () => {
             Add
           </Button>
         </div>
-      )}
+      );
+
+    return (
+      <div>
+        <Typography sx={wordsStyle.header} variant="h4">
+          No words found...
+        </Typography>
+      </div>
+    );
+  };
+
+  return (
+    <Container sx={wordsStyle.container} maxWidth="sm">
+      {makePageContent()}
     </Container>
   );
 };

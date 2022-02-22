@@ -15,6 +15,7 @@ export const WordsProvider = (props: props) => {
 
   const wordsDefaultState: any = {
     words: [],
+    loadingPage: false,
     word: null,
   };
 
@@ -24,6 +25,7 @@ export const WordsProvider = (props: props) => {
   );
 
   const loadWords = async () => {
+    setLoadingPage();
     const words = await wordsRepository.getWords();
 
     console.log(words);
@@ -31,9 +33,17 @@ export const WordsProvider = (props: props) => {
   };
 
   const loadWordById = async (wordId: string) => {
+    setLoadingPage();
     const word = await wordsRepository.getWordById(wordId);
+
     console.log(word);
     dispatch({ type: types.GET_WORD_BY_ID, payload: word });
+  };
+
+  const setLoadingPage = () => {
+    dispatch({
+      type: types.LOADING_PAGE,
+    });
   };
 
   return (
@@ -41,6 +51,7 @@ export const WordsProvider = (props: props) => {
       value={{
         words: state.words,
         word: state.word,
+        loadingPage: state.loadingPage,
         loadWords,
         loadWordById,
       }}
