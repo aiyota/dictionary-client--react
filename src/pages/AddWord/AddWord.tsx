@@ -1,3 +1,4 @@
+import * as React from "react";
 import {
   Button,
   Card,
@@ -9,8 +10,21 @@ import {
 } from "@mui/material";
 import { Link } from "react-router-dom";
 import addWordStyle from "./addWordStyle";
+import { makeKeyboardInputHandler } from "../../utils";
 
 const AddWord = () => {
+  const [word, setWord] = React.useState("");
+  const [definition, setDefinition] = React.useState("");
+  const [etymology, setEtymology] = React.useState("");
+
+  const handleWordChange = makeKeyboardInputHandler(setWord);
+  const handleDefinitionChange = makeKeyboardInputHandler(setDefinition);
+  const handlEtymologyChange = makeKeyboardInputHandler(setEtymology);
+
+  const handleSubmit = () => {
+    console.log({ word, definition, etymology });
+  };
+
   return (
     <Container sx={addWordStyle.container}>
       <Card sx={addWordStyle.card}>
@@ -23,18 +37,21 @@ const AddWord = () => {
             Add Word
           </Typography>
           <TextField
+            onKeyDown={handleWordChange}
             sx={addWordStyle.textField}
             fullWidth
             label="Word"
             id="word-input"
           />
           <TextField
+            onKeyDown={handleDefinitionChange}
             sx={addWordStyle.textField}
             fullWidth
             label="Definition"
             id="definition-input"
           />
           <TextField
+            onKeyDown={handlEtymologyChange}
             id="etymology-input"
             fullWidth
             label="Etymology"
@@ -55,6 +72,7 @@ const AddWord = () => {
               color="success"
               size="large"
               sx={addWordStyle.addBtn}
+              onClick={handleSubmit}
               variant="contained"
             >
               Add
