@@ -5,8 +5,16 @@ const wordStyle: CSSClasses = {
     marginTop: ".5rem",
   },
   wordContainer: {
-    marginTop: "2rem",
-    maxWidth: "800px",
+    marginTop: "4rem",
+  },
+  wordCard: {
+    padding: "1.2rem",
+  },
+  loadingSpinnerContainer: {
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "center",
+    height: "90vh",
   },
 };
 

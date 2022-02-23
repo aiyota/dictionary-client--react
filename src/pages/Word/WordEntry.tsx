@@ -2,10 +2,11 @@ import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
 import Typography from "@mui/material/Typography";
 import Word from "../../data/models/Word";
+import wordStyle from "./wordStyle";
 
 const WordEntry = ({ wordRecord }: { wordRecord: Word }) => {
   return (
-    <Card sx={{ minWidth: 275 }}>
+    <Card sx={wordStyle.wordCard}>
       <CardContent>
         <Typography variant="h5" component="div">
           {wordRecord.word}

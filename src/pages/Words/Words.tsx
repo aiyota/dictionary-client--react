@@ -29,7 +29,7 @@ const Words = () => {
 
     if (!loadingPage && words.length > 0)
       return (
-        <div>
+        <Container>
           <Typography sx={wordsStyle.header} variant="h1">
             Words
           </Typography>
@@ -39,7 +39,7 @@ const Words = () => {
           <Button component={Link} to="add-word" variant="contained">
             Add
           </Button>
-        </div>
+        </Container>
       );
 
     return (

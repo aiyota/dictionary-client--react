@@ -26,8 +26,8 @@ const Word = () => {
   const makePageContent = () => {
     if (loadingPage)
       return (
-        <div>
-          <CircularProgress />
+        <div style={wordStyle.loadingSpinnerContainer}>
+          <CircularProgress size={55} />
         </div>
       );
 
@@ -37,16 +37,21 @@ const Word = () => {
   };
 
   return (
-    <Container sx={wordStyle.wordContainer}>
+    <Container maxWidth="sm" sx={wordStyle.wordContainer}>
       {makePageContent()}
-      <Button
-        sx={wordStyle.backBtn}
-        component={Link}
-        to="/"
-        variant="contained"
-      >
-        Back
-      </Button>
+
+      {!loadingPage && (
+        <div>
+          <Button
+            sx={wordStyle.backBtn}
+            component={Link}
+            to="/"
+            variant="contained"
+          >
+            Back
+          </Button>
+        </div>
+      )}
       <CssBaseline />
     </Container>
   );
