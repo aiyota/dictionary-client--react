@@ -14,8 +14,8 @@ ReactDOM.render(
         <BrowserRouter>
           <Routes>
             <Route path="/" element={<App />} />
-            <Route path="/word" element={<Word />}>
-              <Route path=":wordId"></Route>
+            <Route path="/word">
+              <Route path=":wordId" element={<Word />}></Route>
             </Route>
             <Route path="/add-word" element={<AddWord />} />
           </Routes>
