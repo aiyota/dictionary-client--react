@@ -41,11 +41,24 @@ const AddWord = () => {
             multiline
             maxRows={4}
           />
-          <div>
-            <Button component={Link} to="/" variant="contained">
+          <div style={addWordStyle.lowerButtonContainer}>
+            <Button
+              sx={addWordStyle.backBtn}
+              component={Link}
+              to="/"
+              size="large"
+              variant="contained"
+            >
               Back
             </Button>
-            <Button variant="contained">Add</Button>
+            <Button
+              color="success"
+              size="large"
+              sx={addWordStyle.addBtn}
+              variant="contained"
+            >
+              Add
+            </Button>
           </div>
         </CardContent>
       </Card>

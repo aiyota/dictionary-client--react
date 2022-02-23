@@ -16,6 +16,14 @@ const addWordStyle: CSSClasses = {
   textField: {
     marginBottom: ".8rem",
   },
+  lowerButtonContainer: {
+    marginTop: "1rem",
+    display: "flex",
+  },
+  addBtn: {
+    marginLeft: ".5rem",
+    justifySelf: "flex-end",
+  },
 };
 
 export default addWordStyle;
