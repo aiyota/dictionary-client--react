@@ -11,11 +11,18 @@ import {
 import { Link } from "react-router-dom";
 import addWordStyle from "./addWordStyle";
 import { makeKeyboardInputHandler } from "../../utils";
+import { WordsContext } from "../../context/words/WordsContext";
 
 const AddWord = () => {
   const [word, setWord] = React.useState("");
   const [definition, setDefinition] = React.useState("");
   const [etymology, setEtymology] = React.useState("");
+
+  const { loadPartsOfSpeech } = React.useContext(WordsContext);
+
+  React.useEffect(() => {
+    loadPartsOfSpeech();
+  }, []);
 
   const handleWordChange = makeKeyboardInputHandler(setWord);
   const handleDefinitionChange = makeKeyboardInputHandler(setDefinition);

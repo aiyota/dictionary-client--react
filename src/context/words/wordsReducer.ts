@@ -14,6 +14,11 @@ const wordsReducer = (state: any, action: any) => {
         word: action.payload,
         loadingPage: false,
       };
+    case types.GET_PARTS_OF_SPEECH:
+      return {
+        ...state,
+        partsOfSpeech: action.payload,
+      };
     case types.LOADING_PAGE:
       return {
         ...state,

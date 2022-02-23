@@ -15,6 +15,7 @@ export const WordsProvider = (props: props) => {
 
   const wordsDefaultState: any = {
     words: [],
+    partsOfSpeech: [],
     loadingPage: false,
     word: null,
   };
@@ -40,6 +41,14 @@ export const WordsProvider = (props: props) => {
     dispatch({ type: types.GET_WORD_BY_ID, payload: word });
   };
 
+  const loadPartsOfSpeech = async () => {
+    const partsOfSpeech = await wordsRepository.getPartsOfSpeech();
+    dispatch({
+      type: types.GET_PARTS_OF_SPEECH,
+      payload: partsOfSpeech,
+    });
+  };
+
   const setLoadingPage = () => {
     dispatch({
       type: types.LOADING_PAGE,
@@ -54,6 +63,8 @@ export const WordsProvider = (props: props) => {
         loadingPage: state.loadingPage,
         loadWords,
         loadWordById,
+        loadPartsOfSpeech,
+        partsOfSpeech: state.partsOfSpeech,
       }}
     >
       {props.children}

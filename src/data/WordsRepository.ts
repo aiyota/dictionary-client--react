@@ -2,6 +2,7 @@ import axios from "axios";
 import CreateWordDto from "./dto/CreateWordDto";
 import EditWordDto from "./dto/EditWordDto";
 import IWordsRepository from "./IWordsRepository";
+import PartOfSpeech from "./models/PartOfSpeech";
 import Word from "./models/Word";
 
 export default class WordsRepository implements IWordsRepository {
@@ -35,7 +36,18 @@ export default class WordsRepository implements IWordsRepository {
   searchWord(search: string): Promise<Word[]> {
     throw new Error("Method not implemented.");
   }
+
   editWord(word: EditWordDto): Promise<Word> {
     throw new Error("Method not implemented.");
+  }
+
+  async getPartsOfSpeech(): Promise<PartOfSpeech[]> {
+    try {
+      const response = await axios.get(`${this.apiUrl}/part-of-speech`);
+      return response.data;
+    } catch (error) {
+      console.error(error);
+      return [];
+    }
   }
 }
