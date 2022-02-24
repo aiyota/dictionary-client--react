@@ -22,7 +22,7 @@ const Words = () => {
   const makePageContent = () => {
     if (loadingPage)
       return (
-        <div>
+        <div style={wordsStyle.loadingSpinnerContainer}>
           <CircularProgress />
         </div>
       );

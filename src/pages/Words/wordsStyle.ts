@@ -3,7 +3,7 @@ import { CSSClasses } from "../../style/style-types";
 const wordsStyle: CSSClasses = {
   container: {
     display: "flex",
-    alignItems: "center",
+    alignItems: "flex-start",
     justifyContent: "center",
     maxWidth: "500px !important",
     height: "100vh",
@@ -15,6 +15,11 @@ const wordsStyle: CSSClasses = {
   header: {
     marginBottom: "1rem",
     textAlign: "center",
+  },
+  loadingSpinnerContainer: {
+    height: "90vh",
+    display: "flex",
+    alignItems: "center",
   },
 };
 
