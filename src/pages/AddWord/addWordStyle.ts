@@ -13,7 +13,7 @@ const addWordStyle: CSSClasses = {
     marginBottom: "1rem",
     textAlign: "center",
   },
-  textField: {
+  inputField: {
     marginBottom: ".8rem",
   },
   lowerButtonContainer: {

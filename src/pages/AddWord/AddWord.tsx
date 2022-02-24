@@ -5,31 +5,49 @@ import {
   CardContent,
   Container,
   CssBaseline,
+  FormControl,
+  InputLabel,
   TextField,
   Typography,
+  Select,
+  MenuItem,
 } from "@mui/material";
 import { Link } from "react-router-dom";
 import addWordStyle from "./addWordStyle";
-import { makeKeyboardInputHandler } from "../../utils";
+import {
+  makeKeyboardInputHandler,
+  makeSelectInputHandler,
+} from "../../utils";
 import { WordsContext } from "../../context/words/WordsContext";
 
 const AddWord = () => {
   const [word, setWord] = React.useState("");
+  const [partOfSpeechId, setPartOfSpeechId] = React.useState("");
   const [definition, setDefinition] = React.useState("");
   const [etymology, setEtymology] = React.useState("");
 
-  const { loadPartsOfSpeech } = React.useContext(WordsContext);
+  const { loadPartsOfSpeech, partsOfSpeech } =
+    React.useContext(WordsContext);
 
   React.useEffect(() => {
     loadPartsOfSpeech();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const handleWordChange = makeKeyboardInputHandler(setWord);
   const handleDefinitionChange = makeKeyboardInputHandler(setDefinition);
-  const handlEtymologyChange = makeKeyboardInputHandler(setEtymology);
+  const handleEtymologyChange = makeKeyboardInputHandler(setEtymology);
+  const handlePartOfSpeechChange =
+    makeSelectInputHandler(setPartOfSpeechId);
 
   const handleSubmit = () => {
-    console.log({ word, definition, etymology });
+    console.log({
+      word,
+      definition,
+      partOfSpeech: partOfSpeechId,
+      etymology,
+    });
+    // validate
   };
 
   return (
@@ -45,20 +63,40 @@ const AddWord = () => {
           </Typography>
           <TextField
             onKeyDown={handleWordChange}
-            sx={addWordStyle.textField}
+            sx={addWordStyle.inputField}
             fullWidth
             label="Word"
             id="word-input"
           />
+
+          <FormControl sx={addWordStyle.inputField} fullWidth>
+            <InputLabel id="part-of-speech-select-label">
+              Part of Speech
+            </InputLabel>
+            <Select
+              labelId="part-of-speech-select-label"
+              id="part-of-speech-select"
+              label="Part of Speech"
+              value={partOfSpeechId}
+              onChange={handlePartOfSpeechChange}
+            >
+              {partsOfSpeech.map(({ id, partOfSpeech }) => (
+                <MenuItem value={id} key={id}>
+                  {partOfSpeech}
+                </MenuItem>
+              ))}
+            </Select>
+          </FormControl>
+
           <TextField
             onKeyDown={handleDefinitionChange}
-            sx={addWordStyle.textField}
+            sx={addWordStyle.inputField}
             fullWidth
             label="Definition"
             id="definition-input"
           />
           <TextField
-            onKeyDown={handlEtymologyChange}
+            onKeyDown={handleEtymologyChange}
             id="etymology-input"
             fullWidth
             label="Etymology"
