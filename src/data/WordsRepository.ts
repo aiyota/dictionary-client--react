@@ -1,11 +1,11 @@
 import axios from "axios";
 import CreateWordDto from "./dto/CreateWordDto";
 import EditWordDto from "./dto/EditWordDto";
-import IWordsRepository from "./IWordsRepository";
+import IWordApiController from "./IWordApiController";
 import PartOfSpeech from "./models/PartOfSpeech";
 import Word from "./models/Word";
 
-export default class WordsRepository implements IWordsRepository {
+export default class WordsApiController implements IWordApiController {
   constructor(private apiUrl: string) {}
 
   async getWords(): Promise<Word[]> {

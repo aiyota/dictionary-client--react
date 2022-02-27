@@ -3,7 +3,7 @@ import EditWordDto from "./dto/EditWordDto";
 import PartOfSpeech from "./models/PartOfSpeech";
 import Word from "./models/Word";
 
-export default interface IWordsRepository {
+export default interface IWordApiController {
   getWords(): Promise<Word[]>;
   getWordById(id: string): Promise<Word | null>;
   createWord(word: CreateWordDto): Promise<Word>;
