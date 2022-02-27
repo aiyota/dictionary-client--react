@@ -1,5 +1,5 @@
 import * as React from "react";
-import WordsApiController from "../../data/WordsRepository";
+import WordsApiController from "../../data/WordsApiController";
 import makeConfig from "../../config/config";
 import wordsReducer from "./wordsReducer";
 import types from "../types";
