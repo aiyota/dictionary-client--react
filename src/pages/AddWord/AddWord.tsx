@@ -20,12 +20,21 @@ import {
 } from "../../utils";
 import { WordsContext } from "../../context/words/WordsContext";
 
+import IconButton from "@mui/material/IconButton";
+import { Add, Remove } from "@mui/icons-material";
+
 const AddWord = () => {
   const [word, setWord] = React.useState("");
   const [partOfSpeechId, setPartOfSpeechId] = React.useState("");
   const [sourceId, setSourceId] = React.useState("");
-  const [definition, setDefinition] = React.useState("");
   const [etymology, setEtymology] = React.useState("");
+
+  const [definitions, setDefinitions] = React.useState<string[]>([]);
+  const [definitionFieldIndex, setDefinitionFieldIndex] =
+    React.useState(1);
+  const [definitionFields, setDefinitionFields] = React.useState([
+    createDefinitionField(0),
+  ]);
 
   const { loadPartsOfSpeech, partsOfSpeech, loadSources, sources } =
     React.useContext(WordsContext);
@@ -37,22 +46,58 @@ const AddWord = () => {
   }, []);
 
   const handleWordChange = makeKeyboardInputHandler(setWord);
-  const handleDefinitionChange = makeKeyboardInputHandler(setDefinition);
   const handleEtymologyChange = makeKeyboardInputHandler(setEtymology);
   const handlePartOfSpeechChange =
     makeSelectInputHandler(setPartOfSpeechId);
   const handleSourceChange = makeSelectInputHandler(setSourceId);
 
+  const onClickAddDefinition = (): void => {
+    setDefinitionFieldIndex(index => index + 1);
+    setDefinitionFields(definitionFields => [
+      ...definitionFields,
+      createDefinitionField(definitionFieldIndex),
+    ]);
+  };
+
+  const onClickRemoveDefinition = (): void => {
+    setDefinitionFields(definitionFields => {
+      definitionFields.pop();
+      return [...definitionFields];
+    });
+    setDefinitions(definitions => {
+      definitions.pop();
+      return [...definitions];
+    });
+    setDefinitionFieldIndex(index => (index <= 0 ? 0 : index - 1));
+  };
+
   const handleSubmit = () => {
     console.log({
       word,
-      definition,
       partOfSpeech: partOfSpeechId,
       source: sourceId,
       etymology,
+      definitions,
     });
     // validate
   };
+
+  function createDefinitionField(index: number) {
+    return (
+      <TextField
+        key={index}
+        onChange={e => {
+          setDefinitions(definitions => {
+            definitions[index] = e.target.value;
+            return definitions;
+          });
+        }}
+        sx={addWordStyle.inputField}
+        fullWidth
+        label={`Definition ${index + 1}`}
+      />
+    );
+  }
 
   return (
     <Container sx={addWordStyle.container}>
@@ -109,13 +154,25 @@ const AddWord = () => {
             </Select>
           </FormControl>
 
-          <TextField
-            onKeyDown={handleDefinitionChange}
-            sx={addWordStyle.inputField}
-            fullWidth
-            label="Definition"
-            id="definition-input"
-          />
+          {definitionFields}
+
+          <div style={{ marginBottom: ".8rem" }}>
+            <IconButton
+              onClick={onClickAddDefinition}
+              color="success"
+              aria-label="add definition"
+            >
+              <Add />
+            </IconButton>
+            <IconButton
+              onClick={onClickRemoveDefinition}
+              color="primary"
+              aria-label="remove definition"
+            >
+              <Remove />
+            </IconButton>
+          </div>
+
           <TextField
             onKeyDown={handleEtymologyChange}
             id="etymology-input"
