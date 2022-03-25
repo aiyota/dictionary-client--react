@@ -3,6 +3,7 @@ import CreateWordDto from "./dto/CreateWordDto";
 import EditWordDto from "./dto/EditWordDto";
 import IWordApiController from "./IWordApiController";
 import PartOfSpeech from "./models/PartOfSpeech";
+import Source from "./models/Source";
 import Word from "./models/Word";
 
 export default class WordsApiController implements IWordApiController {
@@ -47,6 +48,15 @@ export default class WordsApiController implements IWordApiController {
       return response.data;
     } catch (error) {
       console.error(error);
+      return [];
+    }
+  }
+
+  async getSources(): Promise<Source[]> {
+    try {
+      const response = await axios.get(`${this.apiUrl}/sources`);
+      return response.data;
+    } catch (error) {
       return [];
     }
   }

@@ -23,14 +23,16 @@ import { WordsContext } from "../../context/words/WordsContext";
 const AddWord = () => {
   const [word, setWord] = React.useState("");
   const [partOfSpeechId, setPartOfSpeechId] = React.useState("");
+  const [sourceId, setSourceId] = React.useState("");
   const [definition, setDefinition] = React.useState("");
   const [etymology, setEtymology] = React.useState("");
 
-  const { loadPartsOfSpeech, partsOfSpeech } =
+  const { loadPartsOfSpeech, partsOfSpeech, loadSources, sources } =
     React.useContext(WordsContext);
 
   React.useEffect(() => {
     loadPartsOfSpeech();
+    loadSources();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
@@ -39,12 +41,14 @@ const AddWord = () => {
   const handleEtymologyChange = makeKeyboardInputHandler(setEtymology);
   const handlePartOfSpeechChange =
     makeSelectInputHandler(setPartOfSpeechId);
+  const handleSourceChange = makeSelectInputHandler(setSourceId);
 
   const handleSubmit = () => {
     console.log({
       word,
       definition,
       partOfSpeech: partOfSpeechId,
+      source: sourceId,
       etymology,
     });
     // validate
@@ -83,6 +87,23 @@ const AddWord = () => {
               {partsOfSpeech.map(({ id, partOfSpeech }) => (
                 <MenuItem value={id} key={id}>
                   {partOfSpeech}
+                </MenuItem>
+              ))}
+            </Select>
+          </FormControl>
+
+          <FormControl sx={addWordStyle.inputField} fullWidth>
+            <InputLabel id="source-select-label">Source</InputLabel>
+            <Select
+              labelId="source-select-label"
+              id="source-select"
+              label="Source"
+              value={sourceId}
+              onChange={handleSourceChange}
+            >
+              {sources.map(({ id, source }) => (
+                <MenuItem value={id} key={id}>
+                  {source}
                 </MenuItem>
               ))}
             </Select>
