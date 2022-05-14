@@ -22,9 +22,9 @@ const Words = () => {
   const makePageContent = () => {
     if (loadingPage)
       return (
-        <div style={wordsStyle.loadingSpinnerContainer}>
+        <Container style={wordsStyle.loadingSpinnerContainer}>
           <CircularProgress />
-        </div>
+        </Container>
       );
 
     if (!loadingPage && words.length > 0)
@@ -43,11 +43,11 @@ const Words = () => {
       );
 
     return (
-      <div>
+      <Container>
         <Typography sx={wordsStyle.header} variant="h4">
           No words found...
         </Typography>
-      </div>
+      </Container>
     );
   };
 

@@ -1,14 +1,21 @@
-import * as React from "react";
 import { CssBaseline } from "@mui/material";
-import Container from "@mui/material/Container";
 import Words from "./Words/Words";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
+import Word from "./Word/Word";
+import AddWord from "./AddWord/AddWord";
 
 const App = () => {
   return (
-    <Container maxWidth="md">
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<Words />} />
+        <Route path="/word">
+          <Route path=":wordId" element={<Word />}></Route>
+        </Route>
+        <Route path="/add-word" element={<AddWord />} />
+      </Routes>
       <CssBaseline />
-      <Words />
-    </Container>
+    </BrowserRouter>
   );
 };
 

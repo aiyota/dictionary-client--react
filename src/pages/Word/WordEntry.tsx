@@ -8,7 +8,7 @@ const WordEntry = ({ wordRecord }: { wordRecord: Word }) => {
   return (
     <Card sx={wordStyle.wordCard}>
       <CardContent>
-        <Typography variant="h5" component="div">
+        <Typography variant="h3" component="div">
           {wordRecord.word}
         </Typography>
         <Typography sx={{ mb: 1.5 }} color="text.secondary">
